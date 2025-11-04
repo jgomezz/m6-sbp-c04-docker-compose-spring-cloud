@@ -24,3 +24,14 @@ docker compose build
 ```
 docker compose up -d
 ```
+
+### Detener un servicio en  docker compose
+```
+docker compose stop user-service-dev 
+```
+
+### Levantar un servicio en  docker compose
+```
+docker compose start user-service-dev
+docker compose up -d user-service-dev
+```

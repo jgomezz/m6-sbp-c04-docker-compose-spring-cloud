@@ -52,8 +52,8 @@ services:
       context: ./user-service
       dockerfile: Dockerfile
     container_name: user-service-dev
-    ports:
-      - "9081:8081"
+    # ports:
+    #  - "9081:8081"
     environment:
       - SPRING_APPLICATION_NAME=user-service
       - SPRING_PROFILES_ACTIVE=dev
@@ -74,8 +74,8 @@ services:
       context: ./product-service
       dockerfile: Dockerfile
     container_name: product-service-dev
-    ports:
-      - "9082:8082"
+    # ports:
+    #  - "9082:8082"
     environment:
       - SPRING_APPLICATION_NAME=product-service
       - SPRING_PROFILES_ACTIVE=dev
@@ -88,6 +88,29 @@ services:
     networks:
       - microservice-network
     restart: unless-stopped
+
+#  Api Gateway Dev
+  api-gateway-dev:
+    image: api-gateway-dev:1.0
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    container_name: api-gateway-dev
+    ports:
+      - "9080:8080"
+    environment:
+      - SPRING_APPLICATION_NAME=api-gateway
+      - SPRING_PROFILES_ACTIVE=dev
+
+    depends_on:
+      user-service-dev:
+        condition: service_started
+      product-service-dev:
+        condition: service_started
+    networks:
+      - microservice-network
+    restart: unless-stopped
+
 
 networks:
   microservice-network:

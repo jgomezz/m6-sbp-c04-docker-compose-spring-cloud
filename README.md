@@ -1,7 +1,5 @@
 # Generar Docker Compose
 
-## Parte 1
-
 ### user-service : generar jar
 ```
 cd user-service
@@ -14,6 +12,14 @@ cd product-service
 mvn clean package -DskipTests
 cd ..
 ```
+
+### api-gateway : generar jar
+```
+cd api-gateway
+mvn clean package -DskipTests
+cd ..
+```
+
 
 ### Generar docker compose
 ```

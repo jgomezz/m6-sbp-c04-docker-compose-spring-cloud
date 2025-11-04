@@ -26,7 +26,7 @@ services:
   # PostgreSQL para Product Service
   postgres-product-dev:
     image: postgres:15-alpine
-    container_name: postgres-product
+    container_name: postgres-product-dev
     environment:
       POSTGRES_DB: productdb
       POSTGRES_USER: postgres
@@ -36,6 +36,8 @@ services:
     #  - "5433:5432"  # Puerto externo 5433, interno 5432
     volumes:
       - postgres-product-dev-data:/var/lib/postgresql/data
+    networks:
+      - microservice-network
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U postgres -d productdb"]
       interval: 10s
@@ -49,11 +51,12 @@ services:
     build:
       context: ./user-service
       dockerfile: Dockerfile
+    container_name: user-service-dev
     ports:
       - "9081:8081"
     environment:
-    #  - SPRING_APPLICATION_NAME=user-service
-    #  - SPRING_PROFILES_ACTIVE=dev
+      - SPRING_APPLICATION_NAME=user-service
+      - SPRING_PROFILES_ACTIVE=dev
       - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres-user-dev:5432/userdb
       - SPRING_DATASOURCE_USERNAME=postgres
       - SPRING_DATASOURCE_PASSWORD=postgres
@@ -70,6 +73,7 @@ services:
     build:
       context: ./product-service
       dockerfile: Dockerfile
+    container_name: product-service-dev
     ports:
       - "9082:8082"
     environment:

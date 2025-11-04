@@ -15,6 +15,7 @@ public interface ProductMapper {
 
     ProductEntity toEntity(Product domain);
 
+    // Mapping with User
     default Product toDomainWithUser(ProductEntity productEntity, User user){
         Product product = toDomain(productEntity);
         product.setCreatedByUser(user);

@@ -3,4 +3,4 @@
 # ============================================
 user:
   service:
-    url: http://localhost:8081
+    url: http://user-service-dev:8081

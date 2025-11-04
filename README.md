@@ -10,7 +10,7 @@ cd ..
 ```
 ### product-service : generar jar
 ```
-cd product -service
+cd product-service
 mvn clean package -DskipTests
 cd ..
 ```

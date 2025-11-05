@@ -31,7 +31,6 @@
 		<spring-cloud.version>2025.0.0</spring-cloud.version>
 	</properties>
 	<dependencies>
-        <!--
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
@@ -40,6 +39,7 @@
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter</artifactId>
 		</dependency>
+        <!--
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>
 			<artifactId>spring-cloud-starter-config</artifactId>
@@ -51,12 +51,10 @@
 		</dependency>
 
         <!-- Spring Cloud Boostrap -->
-        <!--
         <dependency>
             <groupId>org.springframework.cloud</groupId>
             <artifactId>spring-cloud-starter-bootstrap</artifactId>
         </dependency>
-        -->
 
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -69,7 +67,7 @@
 			<scope>test</scope>
 		</dependency>
 
-        <!-- Lombok (Opcional, para logging más limpio) -->
+        <!-- Lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>

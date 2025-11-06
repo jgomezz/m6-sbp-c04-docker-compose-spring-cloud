@@ -202,6 +202,68 @@ volumes:
 
 ### Paso 6 : Construir el nuevo docker compose de docker-compose.dev.yml
 ```
-    docker compose -f docker-compose.dev.yml build
-    docker compose -f docker-compose.dev.yml up -d
+docker compose -f docker-compose.dev.yml build
+docker compose -f docker-compose.dev.yml up -d
 ```
+
+## Parte 3 : DESPLIEGUE EN DESARROLLO
+
+### Crear una instancia en AWS t2.small. con el puerto 9080 abierto
+```
+sudo apt-get update
+
+sudo apt-get upgrade
+
+sudo apt install ca-certificates curl gnupg lsb-release -y
+
+sudo mkdir -p /etc/apt/keyrings
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+
+sudo chmod a+r /etc/apt/keyrings/docker.gpg
+
+echo   "deb [arch="$(dpkg --print-architecture)" signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+"$(. /etc/os-release && echo "$VERSION_CODENAME")" stable" |   sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt update
+
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+
+sudo systemctl status docker
+
+docker --version
+
+docker compose version
+```
+### Bajar el archivo docker-compose.dev.yml
+```
+   mkdir script
+   
+   cd script/
+   
+   wget https://raw.githubusercontent.com/jgomezz/m6-sbp-c04-docker-compose-spring-cloud/refs/heads/main/docker-compose.dev.yml
+   
+```
+
+### Dar permisos al docker
+```
+sudo usermod -aG docker $USER
+exit
+```
+
+### Dar permisos al docker
+```
+cd script/
+
+docker compose -f docker-compose.dev.yml up -d
+```
+
+### Probar localmente
+```
+curl http://localhost:9080/api/users/1
+
+curl http://localhost:9080/api/products/1
+```
+
+### Probar fuera del servidor
+Identificar la IP pública del servidor e invocar los servicios

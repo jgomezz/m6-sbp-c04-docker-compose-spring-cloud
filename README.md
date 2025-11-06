@@ -41,3 +41,40 @@ docker compose stop user-service-dev
 docker compose start user-service-dev
 docker compose up -d user-service-dev
 ```
+
+# CREACIONES DE IMAGENES PARA EL DESPLIEGUE
+
+### Paso 1 : Generar los componentes jar de cada proyecto
+```
+cd user-service
+mvn clean package -DskipTests
+cd ..
+
+cd product-service
+mvn clean package -DskipTests
+cd ..
+
+cd product-service
+mvn clean package -DskipTests
+cd ..
+
+```
+
+### Paso 2 : Crear las imagenes ( se debe tener una cuenta de Docker)
+
+```
+# login
+docker login
+
+# Crear imagenes 
+docker build -t jgomez2z/user-service-dev:1.0  ./user-service
+docker build -t jgomez2z/product-service-dev:1.0  ./product-service
+docker build -t jgomez2z/api-gateway-dev:1.0  ./api-gateway
+```
+
+### Paso 3 : Subir las imagenes al Docker Hub
+```
+docker push jgomez2z/user-service-dev:1.0 
+docker push jgomez2z/product-service-dev:1.0
+docker push jgomez2z/api-gateway-dev:1.0  
+```

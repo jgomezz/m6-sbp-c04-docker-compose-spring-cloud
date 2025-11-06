@@ -198,3 +198,10 @@ volumes:
     driver: local
 
 ```
+### Paso 5 : Elliminar el docker compose microservices-dev
+
+### Paso 6 : Construir el nuevo docker compose de docker-compose.dev.yml
+```
+    docker compose -f docker-compose.dev.yml build
+    docker compose -f docker-compose.dev.yml up -d
+```

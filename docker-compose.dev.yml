@@ -102,7 +102,6 @@ services:
       - microservice-network
     restart: unless-stopped
 
-
 networks:
   microservice-network:
     driver: bridge

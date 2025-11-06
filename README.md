@@ -237,17 +237,18 @@ docker compose version
 ```
 ### Bajar el archivo docker-compose.dev.yml
 ```
-   mkdir script
+mkdir script
    
-   cd script/
+cd script/
    
-   wget https://raw.githubusercontent.com/jgomezz/m6-sbp-c04-docker-compose-spring-cloud/refs/heads/main/docker-compose.dev.yml
+wget https://raw.githubusercontent.com/jgomezz/m6-sbp-c04-docker-compose-spring-cloud/refs/heads/main/docker-compose.dev.yml
    
 ```
 
 ### Dar permisos al docker
 ```
 sudo usermod -aG docker $USER
+
 exit
 ```
 
